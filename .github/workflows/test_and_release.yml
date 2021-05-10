@@ -43,6 +43,7 @@ jobs:
           echo $XDG_CACHE_HOME
           ls -lha ~
           ls -lha ~/.cache
+          ls -lha ~/.cache/node-gyp
           ls -lha ~/.cache/node-gyp-cache
 
       - name: Run ESLinter
