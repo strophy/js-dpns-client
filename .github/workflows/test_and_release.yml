@@ -36,8 +36,14 @@ jobs:
       - name: Check NPM package lock version is updated (dev)
         uses: strophy/gh-action-check-packages@main
 
-      - name: Check NPM package lock version is updated
-        run: npm run check-package # TODO: does this exist as an action already?
+      - name: Debug output
+        run: |
+          pwd
+          ls -lha
+          echo $XDG_CACHE_HOME
+          ls -lha ~
+          ls -lha ~/.cache
+          ls -lha ~/.cache/node-gyp-cache
 
       - name: Run ESLinter
         run: npm run lint
