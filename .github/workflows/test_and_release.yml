@@ -30,21 +30,19 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
+      - name: Enable node-gyp cache
+        uses: actions/cache@v2
+        with:
+          path: '~/.cache/node-gyp'
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
       - name: Install NPM dependencies
         run: npm ci
 
       - name: Check NPM package lock version is updated (dev)
         uses: strophy/gh-action-check-packages@main
-
-      - name: Debug output
-        run: |
-          pwd
-          ls -lha
-          echo $XDG_CACHE_HOME
-          ls -lha ~
-          ls -lha ~/.cache
-          ls -lha ~/.cache/node-gyp
-          ls -lha ~/.cache/node-gyp-cache
 
       - name: Run ESLinter
         run: npm run lint
